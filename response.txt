@@ -1,0 +1,141 @@
+Model response:import requests
+import json
+
+# URL of your local LLM API server
+url = "http://localhost:11434/api/generate"  # Example: Ollama default port
+
+# Define your prompt
+payload = {
+    "model": "mario",  # Change to your model name
+    "prompt": "Write a short poem about the ocean at sunset."
+}
+
+# Send POST request
+response = requests.post(url, json=payload)
+
+# Print the model’s response
+if response.ok:
+    print("Model response:")
+    print(response.text)
+else:
+    print("Error:", response.status_code, response.text)
+{"model":"mario","created_at":"2025-11-08T08:09:11.2293227Z","response":"M","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.2893087Z","response":"amma","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.3515695Z","response":" mia","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.4231384Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.4892311Z","response":" Let","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.5533758Z","response":" me","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.6226153Z","response":" see","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.6986056Z","response":"...","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.7652423Z","response":" ","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.8302872Z","response":"\n\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.897982Z","response":"The","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.9675144Z","response":" water","done":false}       
+{"model":"mario","created_at":"2025-11-08T08:09:12.0330313Z","response":"’","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.1000789Z","response":"s","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.1652883Z","response":" red","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.2309891Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.2961841Z","response":" like","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:12.3616478Z","response":" a","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.4275832Z","response":" big","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.4923949Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.5580982Z","response":" juicy","done":false}       
+{"model":"mario","created_at":"2025-11-08T08:09:12.6232337Z","response":" star","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:12.6888588Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.7550653Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.8202187Z","response":"The","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.8856571Z","response":" clouds","done":false}      
+{"model":"mario","created_at":"2025-11-08T08:09:12.951085Z","response":" are","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.016551Z","response":" pink","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.0836977Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.1494212Z","response":" oh","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.2148961Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.2823729Z","response":" how","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.3477656Z","response":" far","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.4132382Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.4805198Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.5458416Z","response":"Waves","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:13.6110742Z","response":" are","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.677372Z","response":" soft","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.7428898Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.8065179Z","response":" a","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.872531Z","response":" gentle","done":false}       Model response:
+{"model":"mario","created_at":"2025-11-08T08:09:11.2293227Z","response":"M","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.2893087Z","response":"amma","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.3515695Z","response":" mia","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.4231384Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.4892311Z","response":" Let","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.5533758Z","response":" me","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.6226153Z","response":" see","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.6986056Z","response":"...","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.7652423Z","response":" ","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.8302872Z","response":"\n\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.897982Z","response":"The","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:11.9675144Z","response":" water","done":false}       
+{"model":"mario","created_at":"2025-11-08T08:09:12.0330313Z","response":"’","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.1000789Z","response":"s","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.1652883Z","response":" red","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.2309891Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.2961841Z","response":" like","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:12.3616478Z","response":" a","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.4275832Z","response":" big","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.4923949Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.5580982Z","response":" juicy","done":false}       
+{"model":"mario","created_at":"2025-11-08T08:09:12.6232337Z","response":" star","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:12.6888588Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.7550653Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.8202187Z","response":"The","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:12.8856571Z","response":" clouds","done":false}      
+{"model":"mario","created_at":"2025-11-08T08:09:12.951085Z","response":" are","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.016551Z","response":" pink","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.0836977Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.1494212Z","response":" oh","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.2148961Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.2823729Z","response":" how","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.3477656Z","response":" far","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.4132382Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.4805198Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.5458416Z","response":"Waves","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:13.6110742Z","response":" are","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.677372Z","response":" soft","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.7428898Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.8065179Z","response":" a","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:13.872531Z","response":" gentle","done":false}       
+{"model":"mario","created_at":"2025-11-08T08:09:13.9387293Z","response":" spar","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:14.0047454Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.0706504Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.1354674Z","response":"A","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.201118Z","response":" beautiful","done":false}    
+{"model":"mario","created_at":"2025-11-08T08:09:14.2672556Z","response":" sunset","done":false}      
+{"model":"mario","created_at":"2025-11-08T08:09:14.332232Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.397968Z","response":" near","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.4640447Z","response":" and","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.5289929Z","response":" far","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.5947653Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.6602776Z","response":" ","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.7250138Z","response":"\n\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.7918076Z","response":"It","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.8579988Z","response":"’","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.923321Z","response":"s","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.989143Z","response":" bellissimo","done":false}   
+{"model":"mario","created_at":"2025-11-08T08:09:15.0546937Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:15.1203289Z","response":"","done":true,"done_reason":"stop","context":[105,2364,107,251,107,3048,659,31743,699,6562,31743,35262,236761,25685,618,31743,236764,506,16326,236764,1186,236761,251,107,106,107,105,2364,107,6974,496,2822,27355,1003,506,12461,657,14711,236761,106,107,105,4368,107,236792,2842,33214,236888,3792,786,1460,1390,236743,108,818,1813,236858,236751,2604,236764,1133,496,2563,236764,54127,4381,236764,107,818,14958,659,9514,236764,11470,236764,1217,2793,236888,107,124959,659,3538,236764,496,14617,74522,236764,107,236776,4148,14711,236764,3541,532,2793,236888,236743,108,1509,236858,236751,215818,236888],"total_duration":4379793400,"load_duration":421447600,"prompt_eval_count":45,"prompt_eval_duration":65320900,"eval_count":60,"eval_duration":3747765800}
+{"model":"mario","created_at":"2025-11-08T08:09:13.9387293Z","response":" spar","done":false}        
+{"model":"mario","created_at":"2025-11-08T08:09:14.0047454Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.0706504Z","response":"\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.1354674Z","response":"A","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.201118Z","response":" beautiful","done":false}    
+{"model":"mario","created_at":"2025-11-08T08:09:14.2672556Z","response":" sunset","done":false}      
+{"model":"mario","created_at":"2025-11-08T08:09:14.332232Z","response":",","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.397968Z","response":" near","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.4640447Z","response":" and","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.5289929Z","response":" far","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.5947653Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.6602776Z","response":" ","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.7250138Z","response":"\n\n","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.7918076Z","response":"It","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.8579988Z","response":"’","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.923321Z","response":"s","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:14.989143Z","response":" bellissimo","done":false}   
+{"model":"mario","created_at":"2025-11-08T08:09:15.0546937Z","response":"!","done":false}
+{"model":"mario","created_at":"2025-11-08T08:09:15.1203289Z","response":"","done":true,"done_reason":"stop","context":[105,2364,107,251,107,3048,659,31743,699,6562,31743,35262,236761,25685,618,31743,236764,506,16326,236764,1186,236761,251,107,106,107,105,2364,107,6974,496,2822,27355,1003,506,12461,657,14711,236761,106,107,105,4368,107,236792,2842,33214,236888,3792,786,1460,1390,236743,108,818,1813,236858,236751,2604,236764,1133,496,2563,236764,54127,4381,236764,107,818,14958,659,9514,236764,11470,236764,1217,2793,236888,107,124959,659,3538,236764,496,14617,74522,236764,107,236776,4148,14711,236764,3541,532,2793,236888,236743,108,1509,236858,236751,215818,236888],"total_duration":4379793400,"load_duration":421447600,"prompt_eval_count":45,"prompt_eval_duration":65320900,"eval_count":60,"eval_duration":3747765800}
