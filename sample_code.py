@@ -1,67 +1,44 @@
-import streamlit as st
-import ollama
+import requests
+import json
 
-# Set the page title
-st.title("🤖 My Ollama Chatbot")
+# URL of your local LLM API server
+url = "http://localhost:11434/api/generate"
 
-# Define the model to use
-OLLAMA_MODEL = "llama3" # Or "llama3", "codellama", etc.
+# Define your prompt (stream: True is the default, but we can be explicit)
+payload = {
+    "model": "mario",
+    "prompt": "Write a short poem about the ocean at sunset.",
+    "stream": True 
+}
 
-# --- Session State Initialization ---
-# This is the most important part.
-# We initialize a "messages" list in st.session_state to store the chat history.
-# This list persists across script re-runs.
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+# Send POST request
+# We add stream=True to the request itself to tell the 'requests'
+# library to handle this as a streaming connection.
+try:
+    response = requests.post(url, json=payload, stream=True)
+    response.raise_for_status()
 
-# --- Display Chat History ---
-# Loop through the messages stored in session state
-# and display them using st.chat_message.
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# --- Handle New User Input ---
-# st.chat_input creates a text input field at the bottom of the page.
-# The 'if prompt := ...' syntax assigns the user's input to the 'prompt'
-# variable and runs the code block *only if* the user submitted a message.
-if prompt := st.chat_input("What is up?"):
+    print("Model response (streaming):")
     
-    # 1. Add the user's message to session state
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    
-    # 2. Display the user's message in the chat
-    with st.chat_message("user"):
-        st.markdown(prompt)
-    
-    # 3. Display the assistant's response (with streaming)
-    with st.chat_message("assistant"):
-        try:
-            # This is where you call the Ollama API
-            # We pass the entire message history from session state
-            response_stream = ollama.chat(
-                model=OLLAMA_MODEL,
-                messages=st.session_state.messages,
-                stream=True  # This is key for streaming
-            )
-            
-            # Create a generator function to yield content chunks
-            def stream_generator():
-                for chunk in response_stream:
-                    # Yield just the content part of the chunk
-                    if 'content' in chunk['message']:
-                        yield chunk['message']['content']
-            
-            # Use st.write_stream to display the response as it comes in
-            # This function returns the full, concatenated response once complete
-            full_response = st.write_stream(stream_generator())
-            
-            # 4. Add the full assistant response to session state
-            st.session_state.messages.append(
-                {"role": "assistant", "content": full_response}
-            )
+    # Iterate over the response line by line
+    for line in response.iter_lines():
+        if line:
+            try:
+                # Each line is a new JSON object
+                data = json.loads(line)
+                
+                # We print the 'response' key from this JSON object
+                # end='' prevents a new line after each token
+                # flush=True ensures it prints to the console immediately
+                print(data['response'], end='', flush=True)
 
-        except ollama.ResponseError as e:
-            st.error(f"Ollama API Error: {e.error}")
-        except Exception as e:
-            st.error(f"An unexpected error occurred: {e}")
+            except json.JSONDecodeError:
+                print(f"\nError decoding JSON: {line}")
+    
+    print() # Add a final newline after the stream is done
+
+except requests.exceptions.ConnectionError:
+    print(f"Error: Could not connect to the server at {url}.")
+    print("Please make sure your local Ollama server is running.")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
