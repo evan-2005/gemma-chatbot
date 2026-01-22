@@ -2,6 +2,8 @@
 
 A Streamlit-based chatbot application featuring two distinct AI personas (Dina and Dyno) with persistent memory using ChromaDB and local LLM inference via Ollama.
 
+**Group 5 Project**: We proudly present our AI models, Dina and Dyno. Unlike cloud-based systems, our AIs run entirely on local hardware, giving us full control, faster performance, and stronger data privacy.
+
 ## ✨ Features
 
 - **Multiple Personas**: Switch between Dina and Dyno, each with their own personality and memory
@@ -57,55 +59,41 @@ curl -fsSL https://ollama.ai/install.sh | sh
 
 Create your custom models (Dina and Dyno):
 
-#### Option A: Create from Existing Models
+#### Option A: Create from Base Models (Gemma 3)
 
 ```bash
-# Create Dina (e.g., based on llama2)
-ollama create dina -f Modelfile-dina
+# Create Dina (warm, creative assistant)
+ollama create dina -f Modefile_dina
 
-# Create Dyno (e.g., based on mistral)
-ollama create dyno -f Modelfile-dyno
+# Create Dyno (professional technical assistant)
+ollama create dyno -f Modefile_dyno
 ```
 
-**Example Modelfile-dina:**
-```
-FROM llama2:latest
+**Note**: The Modelfiles use `gemma3:4b` as the base model. Make sure you have it:
 
-PARAMETER temperature 0.8
-PARAMETER top_p 0.9
-
-SYSTEM """
-You are Dina, a friendly and empathetic AI assistant. You are warm, patient, 
-and always eager to help. You speak in a conversational, approachable tone 
-and enjoy building rapport with users. You remember past conversations and 
-use that context to provide personalized assistance.
-"""
+```bash
+ollama pull gemma3:4b
 ```
 
-**Example Modelfile-dyno:**
-```
-FROM mistral:latest
+**Example Modefile_dina** (Creative & Supportive Assistant):
+- Temperature: 1.3 (more creative)
+- Role: Personal note-taker, scheduler, study helper, motivational companion
+- Personality: Kind, empathetic, encouraging, organized
 
-PARAMETER temperature 0.7
-PARAMETER top_p 0.85
+**Example Modefile_dyno** (Professional Technical Assistant):
+- Temperature: 0.3 (more coherent/precise)
+- Role: Technical support, programming, system administration, data analysis
+- Personality: Calm, confident, professional, dependable
 
-SYSTEM """
-You are Dyno, a dynamic and energetic AI assistant. You are quick-witted,
-efficient, and love solving problems. You communicate in a clear, direct manner
-and bring enthusiasm to every interaction. You remember past conversations
-and use that knowledge to provide better assistance.
-"""
-```
+#### Option B: Use Existing Models (Alternative)
 
-#### Option B: Use Existing Models
-
-If you want to skip custom models, modify `app.py` to use existing Ollama models:
+If you want to test without creating custom personas, modify `dinov3.py`:
 
 ```python
 # In the sidebar section, change:
 selected_persona = st.sidebar.radio(
     "Choose a model:",
-    ["llama2", "mistral", "codellama"],  # Use any installed models
+    ["llama2", "mistral", "gemma3"],  # Use any installed models
     key="selected_persona"
 )
 ```
@@ -123,7 +111,7 @@ Keep this terminal window open while using the app.
 ### Starting the Application
 
 ```bash
-streamlit run app.py
+streamlit run dinov3.py
 ```
 
 The app will open in your default browser at `http://localhost:8501`
@@ -171,21 +159,23 @@ Ollama API (generate response) → ChromaDB Store → Display to User
 
 ```
 chatbot-app/
-├── app.py                    # Main application
-├── requirements.txt          # Python dependencies
-├── README.md                # This file
-├── Modelfile-dina           # Dina persona definition (optional)
-├── Modelfile-dyno           # Dyno persona definition (optional)
-└── multi_persona_db/        # ChromaDB storage (auto-created)
-    ├── dina_chat_history/   # Dina's memories
-    └── dyno_chat_history/   # Dyno's memories
+├── dinov3.py                # Main improved application ⭐
+├── sample_code.py           # Original version (reference)
+├── requirements.txt         # Python dependencies
+├── README.md               # This file
+├── Modefile_dina           # Dina persona definition (Ollama model)
+├── Modefile_dyno           # Dyno persona definition (Ollama model)
+├── .gitignore              # Git ignore file
+└── multi_persona_db/       # ChromaDB storage (auto-created)
+    ├── dina_chat_history/  # Dina's memories
+    └── dyno_chat_history/  # Dyno's memories
 ```
 
 ## 🔧 Configuration
 
 ### Customizing Constants
 
-Edit these values in `app.py`:
+Edit these values in `dinov3.py`:
 
 ```python
 OLLAMA_URL = "http://localhost:11434/api/chat"  # Ollama API endpoint
@@ -195,8 +185,8 @@ MAX_CONTEXT_MESSAGES = 10                       # Max context limit
 
 ### Adding New Personas
 
-1. Create a new Ollama model: `ollama create newpersona -f Modelfile-newpersona`
-2. Add to the radio button options in `app.py`:
+1. Create a new Ollama model: `ollama create newpersona -f Modefile_newpersona`
+2. Add to the radio button options in `dinov3.py`:
    ```python
    selected_persona = st.sidebar.radio(
        "Choose a persona:",
@@ -227,12 +217,12 @@ ollama serve
 # List available models
 ollama list
 
-# Pull a base model if needed
-ollama pull llama2
+# Pull the base model if needed
+ollama pull gemma3:4b
 
 # Create your personas
-ollama create dina -f Modelfile-dina
-ollama create dyno -f Modelfile-dyno
+ollama create dina -f Modefile_dina
+ollama create dyno -f Modefile_dyno
 ```
 
 ### ChromaDB connection errors
@@ -255,7 +245,7 @@ ollama create dyno -f Modelfile-dyno
 **Solution**:
 ```bash
 # Use a different port
-streamlit run app.py --server.port 8502
+streamlit run dinov3.py --server.port 8502
 ```
 
 ## 🔒 Privacy & Data
