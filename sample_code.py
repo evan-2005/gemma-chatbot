@@ -180,7 +180,7 @@ if prompt := st.chat_input(f"Ask {selected_persona} a question!"):
 
         collection.add(
             documents=[prompt, full_response],
-            metadatos=[
+            metadatas=[  # BUG WAS HERE: was "metadatos"
                 {"role": "user", "timestamp": user_ts}, 
                 {"role": "assistant", "timestamp": asst_ts}
             ],
